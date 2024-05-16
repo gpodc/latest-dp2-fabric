@@ -155,3 +155,15 @@ Package and install chaincode 'basic' in channel 'c1' as org1.
     createChannel
     deployCC
     --COMPLETED--
+
+
+# NODERED
+
+-Gateway -> Peer -> TLS
+base64 project2/fabric_codes/test-net/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/tlscacerts/tlsca.org1.example.com-cert.pem
+
+-Identity -> Cert
+base64 project2/fabric_codes/test-net/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/signcerts/Admin@org1.example.com-cert.pem
+
+-Identity -> Private Key
+base64 project2/fabric_codes/test-net/organizations/peerOrganizations/org1.example.com/users/Admin@org1.example.com/msp/keystore/priv_sk
