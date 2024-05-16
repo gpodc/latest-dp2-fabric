@@ -1,0 +1,140 @@
+[
+    {
+        "id": "39d1d1445025bc7e",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "31abd6b2fe2428c0",
+        "type": "inject",
+        "z": "39d1d1445025bc7e",
+        "name": "sensorData",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "sensorData",
+        "payload": "65.1",
+        "payloadType": "num",
+        "x": 290,
+        "y": 340,
+        "wires": [
+            [
+                "f033cde82a14fae2"
+            ]
+        ]
+    },
+    {
+        "id": "f033cde82a14fae2",
+        "type": "function",
+        "z": "39d1d1445025bc7e",
+        "name": "function 1",
+        "func": "function IDiterator() {\n    // Retrieve the last used ID from the flow context or start with 0\n    var lastId = flow.get('lastId') || 3;;\n    // Increment the ID\n    lastId += 1;\n    // Update the flow context with the new last used ID\n    flow.set('lastId', lastId);\n    // Return the new ID prefixed with 'data_'\n    return 'data_' + lastId.toString();\n}\n\nmsg.payload = {\n    id: IDiterator(),  // Ensure unique IDs\n    sensorID: \"103\",\n    meterReading: \"69\",\n    timestamp: new Date().toISOString()\n};\nreturn {payload: [msg.payload.id, msg.payload.sensorID, msg.payload.meterReading, msg.payload.timestamp]};\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nflow.set('lastId', 3);",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 220,
+        "wires": [
+            [
+                "d1084784483c6f9c"
+            ]
+        ]
+    },
+    {
+        "id": "d1084784483c6f9c",
+        "type": "fabric-cc-submit",
+        "z": "39d1d1445025bc7e",
+        "name": "submit data",
+        "gatewaySelector": "63372c781b6a8732",
+        "identitySelector": "f1e6a502204fb65d",
+        "channelSelector": "8360c86278009dc7",
+        "contractSelector": "3ec3ab2f868d3b12",
+        "transaction": "CreateSensorData",
+        "args": "",
+        "transientData": "",
+        "x": 510,
+        "y": 220,
+        "wires": [
+            [
+                "2d334c52c73061b6"
+            ]
+        ]
+    },
+    {
+        "id": "2d334c52c73061b6",
+        "type": "debug",
+        "z": "39d1d1445025bc7e",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 680,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "63372c781b6a8732",
+        "type": "fabric-gateway",
+        "name": "peer0",
+        "peerSelectorGw": "fd166524d61b9659"
+    },
+    {
+        "id": "f1e6a502204fb65d",
+        "type": "fabric-identity",
+        "name": "org1-c1",
+        "mspIdSelector": "09eb25318cd76c38",
+        "certType": "embeded",
+        "isFabricOpType": "true",
+        "fabricOpIdPath": "",
+        "certPath": "",
+        "privateKeyPath": "",
+        "microfabUrl": "http://client.127-0-0-1.nip.io:8080",
+        "microfabId": ""
+    },
+    {
+        "id": "8360c86278009dc7",
+        "type": "fabric-channel",
+        "name": "c1",
+        "channel": "c1"
+    },
+    {
+        "id": "3ec3ab2f868d3b12",
+        "type": "fabric-contract",
+        "name": "",
+        "contract": "sensorDataContract2"
+    },
+    {
+        "id": "fd166524d61b9659",
+        "type": "fabric-peer",
+        "name": "",
+        "url": "peer0.org1.example.com:7051",
+        "tls": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUNWekNDQWY2Z0F3SUJBZ0lSQUxPUE1rZ3FJ cjBBTitCR3F5ZVBvb1F3Q2dZSUtvWkl6ajBFQXdJd2RqRUwKTUFrR0ExVUVCaE1DVlZNeEV6QVJC Z05WQkFnVENrTmhiR2xtYjNKdWFXRXhGakFVQmdOVkJBY1REVk5oYmlCRwpjbUZ1WTJselkyOHhH VEFYQmdOVkJBb1RFRzl5WnpFdVpYaGhiWEJzWlM1amIyMHhIekFkQmdOVkJBTVRGblJzCmMyTmhM bTl5WnpFdVpYaGhiWEJzWlM1amIyMHdIaGNOTWpRd05URTJNVGt5TVRBd1doY05NelF3TlRFME1U a3kKTVRBd1dqQjJNUXN3Q1FZRFZRUUdFd0pWVXpFVE1CRUdBMVVFQ0JNS1EyRnNhV1p2Y201cFlU RVdNQlFHQTFVRQpCeE1OVTJGdUlFWnlZVzVqYVhOamJ6RVpNQmNHQTFVRUNoTVFiM0puTVM1bGVH RnRjR3hsTG1OdmJURWZNQjBHCkExVUVBeE1XZEd4elkyRXViM0puTVM1bGVHRnRjR3hsTG1OdmJU QlpNQk1HQnlxR1NNNDlBZ0VHQ0NxR1NNNDkKQXdFSEEwSUFCTVQ5QWUvcTBnNWxVQ2NncnpKM1BC NHdVSkRyUVpHbjBmSFRHRC9ZOUp2K2VyR2NVdU1tN29ZOQpaWmZtU1dNR0ZaRjRSbzBkSmpNejBU SlhPS25rQmVHamJUQnJNQTRHQTFVZER3RUIvd1FFQXdJQnBqQWRCZ05WCkhTVUVGakFVQmdnckJn RUZCUWNEQWdZSUt3WUJCUVVIQXdFd0R3WURWUjBUQVFIL0JBVXdBd0VCL3pBcEJnTlYKSFE0RUln UWdjWEN0bENWUkh3TFR4OE5TaFd5MDFSU3o2RlIvVE1EY3ZZTVNvMk1PTVh3d0NnWUlLb1pJemow RQpBd0lEUndBd1JBSWdJY3E2bTVMSG1mZzRmMGorT1dLWEFRYlUxUlZVdU9OaGZPK0dGYnpoUnFN Q0lCN2V2ZW5oCktBRHhtU2pSaWhEYmx5MTZiYUU5c0pYSVdOalB1ZVZDbENTZwotLS0tLUVORCBD RVJUSUZJQ0FURS0tLS0tCg==",
+        "grpcOptions": "{\n  \"grpc.ssl_target_name_override\": \"peer0.org1.example.com\",\n  \"grpc.default_authority\": \"peer0.org1.example.com\"\n}\n"
+    },
+    {
+        "id": "09eb25318cd76c38",
+        "type": "fabric-mspid",
+        "name": "mspid",
+        "mspId": "Org1MSP"
+    }
+]

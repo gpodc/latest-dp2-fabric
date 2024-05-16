@@ -1,0 +1,17 @@
+{
+	"network-configs": {
+		"fabric_test": {
+			"name": "Fabric-IoT Network1",
+			"profile": "./connection-profile/org1.json"
+		},
+		"org2-network": {
+			"name": "Fabric-IoT Network2",
+			"profile": "./connection-profile/org2.json"
+		},
+		"org3-network": {
+			"name": "Fabric-IoT Network3",
+			"profile": "./connection-profile/org3.json"
+		}
+	},
+	"license": "Apache-2.0"
+}
