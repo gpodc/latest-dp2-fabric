@@ -1,0 +1,24 @@
+test:
+  workers:
+    number: 5  # Adjust based on your requirement
+  rounds:
+    - label: "Create Sensor Data"
+      description: "Test creating sensor data entries"
+      txNumber: 1000
+      rateControl:
+        type: "fixed-load"
+        opts:
+          transactionLoad: 5
+      workload:
+        module: "benchmarks/samples/fabric/sensorDataContract/create-sensor-data.js"
+    - label: "Read Sensor Data"
+      description: "Test reading sensor data entries"
+      txNumber: 1000
+      rateControl:
+        type: "fixed-load"
+        opts:
+          transactionLoad: 5
+      workload:
+        module: "benchmarks/samples/fabric/sensorDataContract/read-sensor-data.js"
+        arguments:
+          assets: 500
