@@ -20,7 +20,7 @@ https://docs.google.com/document/d/1W3BzemJl1a7c2f5ipRRvOEGInFUlwXuDTt7zwUlAujY/
             ├── bin (fabric-samples)
             ├── caliper-benchmarks (git clone)
             ├── cc-test (fabric-samples-based chaincode)
-            │   │   └── chaincode-javascript
+            │   └── chaincode-javascript
             │   │   ├── index.js
             │   │   ├── lib
             │   │   │   └── sensorDataContract.js
