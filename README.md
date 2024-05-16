@@ -18,6 +18,7 @@ https://docs.google.com/document/d/1W3BzemJl1a7c2f5ipRRvOEGInFUlwXuDTt7zwUlAujY/
         └── fabric_codes
             ├── asset-transfer-basic (fabric-samples)
             ├── bin (fabric-samples)
+            ├── caliper-benchmarks (git clone)
             ├── cc-test (fabric-samples-based chaincode)
             │   ├── index.js
             │   ├── lib
