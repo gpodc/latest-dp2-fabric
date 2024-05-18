@@ -180,8 +180,8 @@ base64 project2/fabric_codes/test-net/organizations/peerOrganizations/org1.examp
 
 # Caliper
 
-[HYPERLEDGER CALIPER]
-For setup: https://hyperledger.github.io/caliper/v0.5.0/installing-caliper/ 
+HYPERLEDGER CALIPER
+For setup: https://hyperledger.github.io/caliper/v0.6.0/installing-caliper/ 
 
 (same directory as fabric-samples )
 
@@ -195,7 +195,7 @@ INSTALL CALIPER-CLI [local npm install] [user@ubuntu:~/caliper-benchmarks$ ]
 
 (more info at caliper-benchmarks/networks/fabric/README.md)
 
-[Deploy chaincode for benchmark]
+Deploy chaincode for benchmark
 fabric-samples 'fabcar'
 
     ./network.sh deployCC -ccn fabcar -ccp ../../caliper-benchmarks/src/fabric/samples/fabcar/go -ccl go
@@ -204,10 +204,11 @@ cc-test/chaincode-javascript 'sensorDataContract'
 
     ./network.sh deployCC -ccn fabcar -ccp ../caliper-benchmarks/src/fabric/samples/fabcar/node -ccl javascript -asOrg 1
     
-[Execute Benchmark]
+Execute Benchmark (in caliper-benchmarks directory)
+
 fabric-samples 'fabcar'
 
-    caliper-benchmarks $ npx caliper launch manager --caliper-workspace ./ --caliper-networkconfig networks/fabric/test-network.yaml --caliper-benchconfig benchmarks/samples/fabric/fabcar/config.yaml --caliper-flow-only-test --caliper-fabric-gateway-enabled
+    npx caliper launch manager --caliper-workspace ./ --caliper-networkconfig networks/fabric/test-network.yaml --caliper-benchconfig benchmarks/samples/fabric/fabcar/config.yaml --caliper-flow-only-test --caliper-fabric-gateway-enabled
 
 Chaincode ‘sensorDataContract’
 
