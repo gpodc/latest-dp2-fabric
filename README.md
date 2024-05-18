@@ -191,7 +191,7 @@ For setup: https://hyperledger.github.io/caliper/v0.5.0/installing-caliper/
 INSTALL CALIPER-CLI [local npm install] [user@ubuntu:~/caliper-benchmarks$ ]
 
     npm install --only=prod @hyperledger/caliper-cli@0.6.0
-    user@ubuntu:~/caliper-benchmarks$ npx caliper bind --caliper-bind-sut fabric:2.5
+    npx caliper bind --caliper-bind-sut fabric:2.5
 
 (more info at caliper-benchmarks/networks/fabric/README.md)
 
