@@ -1,12 +1,20 @@
 # fabric_codes
 
 Before running scripts
+
 Change path to bin in network.sh
-export PATH=$PATH:path/to/your/directory/bin
 
+    export PATH=$PATH:path/to/your/directory/bin
 
+Before deploying nodejs chaincode
+
+    cd ../cc-test/chaincode-javascript
+    npm install
+    
 Before invoking chaincode
-export FABRIC_CFG_PATH=$PWD/../config/ (path containing core, orderer, configtx.yaml)
+
+    export FABRIC_CFG_PATH=$PWD/../config/ (path containing core, orderer, configtx.yaml)
+
 set env variables to Org
 
 docx for setup/troubleshooting
