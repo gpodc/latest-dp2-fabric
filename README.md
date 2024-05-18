@@ -197,8 +197,8 @@ INSTALL CALIPER-CLI [local npm install] [user@ubuntu:~/caliper-benchmarks$ ]
 
 [Deploy chaincode for benchmark]
 fabric-samples 'fabcar'
-    
-    fabric-samples/test-network $ ./network.sh deployCC -ccn fabcar -ccp ../../caliper-benchmarks/src/fabric/samples/fabcar/go -ccl go
+
+    ./network.sh deployCC -ccn fabcar -ccp ../../caliper-benchmarks/src/fabric/samples/fabcar/go -ccl go
 
 cc-test/chaincode-javascript 'sensorDataContract'
 
