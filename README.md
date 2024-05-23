@@ -202,8 +202,8 @@ fabric-samples 'fabcar'
 
 cc-test/chaincode-javascript 'sensorDataContract'
 
-    ./network.sh deployCC -ccn fabcar -ccp ../caliper-benchmarks/src/fabric/samples/fabcar/node -ccl javascript -asOrg 1
-    
+    ./network.sh deployCC -c c1 -ccn sensorDataContract -ccp ../cc-test/chaincode-javascript -ccl javascript -asOrg 1
+
 Execute Benchmark (in caliper-benchmarks directory)
 
 fabric-samples 'fabcar'
