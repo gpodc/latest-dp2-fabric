@@ -1,0 +1,50 @@
+# Copyright IBM Corp. All Rights Reserved.
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+
+version: '3.7'
+
+networks:
+  test:
+    name: fabric_test
+
+services:
+  node-app1:
+    container_name: node-app-service1
+    build:
+      context: ./node-app-org1
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    volumes:
+      - ../test-net/organizations/peerOrganizations/org1.example.com/connection-app-org1.json:/tmp/connection-app-org1.json
+      - ../test-net/organizations:/app/organizations
+    networks:
+      - test
+
+  node-app2:
+    container_name: node-app-service2
+    build:
+      context: ./node-app-org2
+      dockerfile: Dockerfile
+    ports:
+      - "3002:3002"
+    volumes:
+      - ../test-net/organizations/peerOrganizations/org2.example.com/connection-app-org2.json:/tmp/connection-app-org2.json
+      - ../test-net/organizations:/app/organizations
+    networks:
+      - test
+
+  node-app3:
+    container_name: node-app-service3
+    build:
+      context: ./node-app-org3
+      dockerfile: Dockerfile
+    ports:
+      - "3003:3003"
+    volumes:
+      - ../test-net/organizations/peerOrganizations/org3.example.com/connection-app-org3.json:/tmp/connection-app-org3.json
+      - ../test-net/organizations:/app/organizations
+    networks:
+      - test
