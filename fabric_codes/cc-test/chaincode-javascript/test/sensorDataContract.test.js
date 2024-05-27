@@ -24,18 +24,22 @@ describe('SensorDataContract Tests', () => {
 
     describe('Test CreateSensorData', () => {
         it('should create a sensor data entry', async () => {
-            const createResponse = await mockStub.mockInvoke('tx2', ['CreateSensorData', 'data_3', '103', '28.4', new Date().toISOString()]);
+            const timestamp = new Date().toISOString();
+            const createResponse = await mockStub.mockInvoke('tx2', ['CreateSensorData', 'data_3', '103', '28.4', '15.6', timestamp]);
             expect(createResponse.status).to.equal(200);
             expect(JSON.parse(createResponse.payload.toString())).to.deep.include({
                 ID: 'data_3',
                 sensorID: 103,
-                meterReading: 28.4
+                kwhReading: 28.4,
+                ampReading: 15.6,
+                timestamp: timestamp
             });
         });
 
         it('should fail to create a sensor data entry with an existing ID', async () => {
-            await mockStub.mockInvoke('tx2', ['CreateSensorData', 'data_1', '101', '29.5', new Date().toISOString()]);
-            const createResponse = await mockStub.mockInvoke('tx3', ['CreateSensorData', 'data_1', '101', '29.5', new Date().toISOString()]);
+            const timestamp = new Date().toISOString();
+            await mockStub.mockInvoke('tx2', ['CreateSensorData', 'data_1', '101', '29.5', '16.7', timestamp]);
+            const createResponse = await mockStub.mockInvoke('tx3', ['CreateSensorData', 'data_1', '101', '29.5', '16.7', timestamp]);
             expect(createResponse.status).to.equal(500);
         });
     });
@@ -47,7 +51,8 @@ describe('SensorDataContract Tests', () => {
             expect(JSON.parse(readResponse.payload.toString())).to.deep.include({
                 ID: 'data_1',
                 sensorID: 101,
-                meterReading: 25.5
+                kwhReading: 25.5,
+                ampReading: 15.2
             });
         });
 
@@ -59,17 +64,21 @@ describe('SensorDataContract Tests', () => {
 
     describe('Test UpdateSensorData', () => {
         it('should update a sensor data entry', async () => {
-            const updateResponse = await mockStub.mockInvoke('tx6', ['UpdateSensorData', 'data_1', '101', '32.0', new Date().toISOString()]);
+            const timestamp = new Date().toISOString();
+            const updateResponse = await mockStub.mockInvoke('tx6', ['UpdateSensorData', 'data_1', '101', '32.0', '17.1', timestamp]);
             expect(updateResponse.status).to.equal(200);
             expect(JSON.parse(updateResponse.payload.toString())).to.deep.include({
                 ID: 'data_1',
                 sensorID: 101,
-                meterReading: 32.0
+                kwhReading: 32.0,
+                ampReading: 17.1,
+                timestamp: timestamp
             });
         });
 
         it('should fail to update a non-existing sensor data', async () => {
-            const updateResponse = await mockStub.mockInvoke('tx7', ['UpdateSensorData', 'sensor100', '101', '32.0', new Date().toISOString()]);
+            const timestamp = new Date().toISOString();
+            const updateResponse = await mockStub.mockInvoke('tx7', ['UpdateSensorData', 'sensor100', '101', '32.0', '17.1', timestamp]);
             expect(updateResponse.status).to.equal(500);
         });
     });
@@ -97,14 +106,16 @@ describe('SensorDataContract Tests', () => {
             expect(result[0]).to.deep.include({
                 ID: 'data_1',
                 sensorID: 101,
-                meterReading: 25.5
+                kwhReading: 25.5,
+                ampReading: 15.2
             });
         });
     });
 
     describe('Test GetLatestSensorReadings', () => {
         it('should return the latest readings for each sensor', async () => {
-            await mockStub.mockInvoke('tx12', ['CreateSensorData', 'data_3', '101', '27.0', new Date().toISOString()]);
+            const timestamp = new Date().toISOString();
+            await mockStub.mockInvoke('tx12', ['CreateSensorData', 'data_3', '101', '27.0', '16.0', timestamp]);
             const latestReadings = await mockStub.mockInvoke('tx13', ['GetLatestSensorReadings']);
             expect(latestReadings.status).to.equal(200);
             const result = JSON.parse(latestReadings.payload.toString());
@@ -113,7 +124,9 @@ describe('SensorDataContract Tests', () => {
             expect(result.find(r => r.sensorID === 101)).to.deep.include({
                 ID: 'data_3',
                 sensorID: 101,
-                meterReading: 27.0
+                kwhReading: 27.0,
+                ampReading: 16.0,
+                timestamp: timestamp
             });
         });
     });

@@ -17,7 +17,8 @@ class CreateSensorDataWorkload extends WorkloadModuleBase {
         this.txIndex++;
         let ID = 'data_' + this.txIndex.toString() + '_' + this.workerIndex;
         let sensorID = '104';
-        let meterReading = (Math.random() * 100).toFixed(2); // Generate a random meter reading
+        let kwhReading = (Math.random() * 100).toFixed(2); // Generate a kwh meter reading
+        let ampReading = (Math.random() * 100).toFixed(2); // Generate a amp meter reading
         let timestamp = new Date().toISOString();
 
         let args = {
@@ -25,7 +26,7 @@ class CreateSensorDataWorkload extends WorkloadModuleBase {
             contractFunction: 'CreateSensorData',
             contractVersion: 'v1',
             // invokerIdentity: 'User1',
-            contractArguments: [ID, sensorID, meterReading, timestamp],
+            contractArguments: [ID, sensorID, kwhReading, ampReading,timestamp],
             timeout: 30
         };
 

@@ -18,13 +18,15 @@ class SensorDataContract extends Contract {
             {
                 ID: 'data_1',
                 sensorID: 101,
-                meterReading: 25.5,
+                kwhReading: 25.5,
+                ampReading: 15.2,
                 timestamp: new Date().toISOString(),
             },
             {
                 ID: 'data_2',
                 sensorID: 102,
-                meterReading: 30.2,
+                kwhReading: 30.2,
+                ampReading: 10.1,
                 timestamp: new Date().toISOString(),
             },
         ];
@@ -36,7 +38,7 @@ class SensorDataContract extends Contract {
     }
 
     // CreateSensorData creates a new sensor data entry
-    async CreateSensorData(ctx, id, sensorID, meterReading, timestamp) {
+    async CreateSensorData(ctx, id, sensorID, kwhReading, ampReading, timestamp) {
         const exists = await this.SensorDataExists(ctx, id);
         if (exists) {
             throw new Error(`The sensor data ${id} already exists`);
@@ -46,7 +48,8 @@ class SensorDataContract extends Contract {
             docType: 'sensorData',
             ID: id,
             sensorID: parseInt(sensorID),
-            meterReading: parseFloat(meterReading),
+            kwhReading: parseFloat(kwhReading),
+            ampReading: parseFloat(ampReading),
             timestamp,
         };
 
@@ -64,7 +67,7 @@ class SensorDataContract extends Contract {
     }
 
     // UpdateSensorData updates an existing sensor data in the world state with provided parameters.
-    async UpdateSensorData(ctx, id, sensorID, meterReading, timestamp) {
+    async UpdateSensorData(ctx, id, sensorID, kwhReading, ampReading, timestamp) {
         const exists = await this.SensorDataExists(ctx, id);
         if (!exists) {
             throw new Error(`The sensor data ${id} does not exist`);
@@ -74,7 +77,8 @@ class SensorDataContract extends Contract {
             docType: 'sensorData',
             ID: id,
             sensorID: parseInt(sensorID),
-            meterReading: parseFloat(meterReading),
+            kwhReading: parseFloat(kwhReading),
+            ampReading: parseFloat(ampReading),
             timestamp,
         };
 
