@@ -87,8 +87,8 @@ app.get('/data', async (req, res) => {
 	});
 	
 app.listen(port, () => {
-	console.log(`Middleware service listening at http://node-app-service:${port}`);
-	console.log(`Data query can now be accessed at http://node-app-service:${port}/data`);
+	console.log(`Middleware service listening at http://node-app-service2:${port}`);
+	console.log(`Data query can now be accessed at http://node-app-service2:${port}/data`);
 	// console.log(`Middleware service listening at http://localhost:${port}`);
 	// console.log(`Data query can now be accessed at http://localhost:${port}/data`);
 });
