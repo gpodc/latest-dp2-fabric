@@ -21,6 +21,16 @@ docx for setup/troubleshooting
 https://docs.google.com/document/d/1W3BzemJl1a7c2f5ipRRvOEGInFUlwXuDTt7zwUlAujY/edit#heading=h.48tchcys8agm
 
 # Folder Structure
+    explorer
+        ├── currentFlowNodeRed.json
+        │   ├── fabric_test.json
+        │   ├── org1.json
+        │   ├── org2.json
+        │   └── org3.json
+        ├── config-test.json
+        ├── config.json
+        └── docker-compose.yaml
+            
     project2
         ├── currentFlowNodeRed.json
         └── fabric_codes
