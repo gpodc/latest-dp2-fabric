@@ -88,31 +88,31 @@ creates channel for peers, joins peers - $CHANNEL_NAME accepts string
 
 Package and install chaincode 'sensorDataContract' in channel 'c1'. as org1
 
-    ./network.sh deployCC -c c1 -ccn sensorDataContract -ccp ../cc-test/chaincode-javascript -ccl javascript -asOrg 1
+    ./network.sh deployCC -c c1 -ccn sensorDataContract1 -ccp ../cc-test/chaincode-javascript -ccl javascript -asOrg 1
 
 Initialize chaincode 'sensorDataContract' on channel 'c1' (asOrg 1) *must set env org.
 
-    peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile "${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem" -C c1 -n sensorDataContract --peerAddresses localhost:7051 --tlsRootCertFiles "${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt" -c '{"function":"InitLedger","Args":[]}'
+    peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile "${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem" -C c1 -n sensorDataContract1 --peerAddresses localhost:7051 --tlsRootCertFiles "${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt" -c '{"function":"InitLedger","Args":[]}'
 
 To verify if chaincode 'sensorDataContract' is installed on the Fabric network
 
-    peer lifecycle chaincode querycommitted --channelID c1 --name sensorDataContract --output json
+    peer lifecycle chaincode querycommitted --channelID c1 --name sensorDataContract1 --output json
 
 Peer chaincode query function 'GetAllSensorData' in chaincode sensorDataContract 
 
-    peer chaincode query -C c1 -n sensorDataContract -c '{"Args":["GetAllSensorData"]}'
+    peer chaincode query -C c1 -n sensorDataContract1 -c '{"Args":["GetAllSensorData"]}'
 
 Peer chaincode query function 'GetLatestSensorReadings' in chaincode sensorDataContract
 
-    peer chaincode query -C c1 -n sensorDataContract2 -c '{"Args":["GetLatestSensorReadings"]}'
+    peer chaincode query -C c1 -n sensorDataContract1 -c '{"Args":["GetLatestSensorReadings"]}'
 
 Peer chaincode invoke function 'ReadSensorData' in chaincode 'sensorDataContract' in channel 'c1' (asOrg 1)
 
-    peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile "${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem" -C c1 -n sensorDataContract2 --peerAddresses localhost:7051 --tlsRootCertFiles "${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt" -c '{"function":"ReadSensorData","Args":["data_1"]}'
+    peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile "${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem" -C c1 -n sensorDataContract1 --peerAddresses localhost:7051 --tlsRootCertFiles "${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt" -c '{"function":"ReadSensorData","Args":["data_1"]}'
 
 Peer chaincode invoke function 'CreateSensorData' in chaincode 'sensorDataContract' in channel 'c1' (asOrg 1)
 
-    peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile "${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem" -C c1 -n sensorDataContract --peerAddresses localhost:7051 --tlsRootCertFiles "${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt" -c '{"function":"CreateSensorData","Args":["sensor3","103","62.1","2024-05-14T02:02:00Z"]}'
+    peer chaincode invoke -o localhost:7050 --ordererTLSHostnameOverride orderer.example.com --tls --cafile "${PWD}/organizations/ordererOrganizations/example.com/orderers/orderer.example.com/msp/tlscacerts/tlsca.example.com-cert.pem" -C c1 -n sensorDataContract1 --peerAddresses localhost:7051 --tlsRootCertFiles "${PWD}/organizations/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/tls/ca.crt" -c '{"function":"CreateSensorData","Args":["data_3","103","62.1","2024-05-14T02:02:00Z"]}'
 
     
 
