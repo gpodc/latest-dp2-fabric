@@ -25,7 +25,7 @@ function prettyJSONString(inputString) {
 	return JSON.stringify(JSON.parse(inputString), null, 2);
 }
 
-async function main() {
+async function latestReading() {
 	try {
 		// build an in memory object with the network configuration (also known as a connection profile)
 		const ccp = buildCCPOrg2();
@@ -81,8 +81,69 @@ async function main() {
 	}
 }
 
+async function allData() {
+	try {
+		// build an in memory object with the network configuration (also known as a connection profile)
+		const ccp = buildCCPOrg2();
+
+		// build an instance of the fabric ca services client based on
+		// the information in the network configuration
+		// const caClient = buildCAClient(FabricCAServices, ccp, 'ca.org1.example.com');
+
+		// setup the wallet to hold the credentials of the application user
+		const wallet = await buildWallet(Wallets, walletPath, org2UserId);
+
+		// Create a new gateway instance for interacting with the fabric network.
+		// In a real application this would be done as the backend server session is setup for
+		// a user that has been verified.
+		const gateway = new Gateway();
+
+		try {
+			// setup the gateway instance
+			// The user will now be able to create connections to the fabric network and be able to
+			// submit transactions and query. All transactions submitted by this gateway will be
+			// signed by this user using the credentials stored in the wallet.
+			await gateway.connect(ccp, {
+				wallet,
+				identity: org2UserId,
+				discovery: { enabled: true, asLocalhost: false } // using asLocalhost as this gateway is using a fabric network deployed locally
+			});
+
+			// Build a network instance based on the channel where the smart contract is deployed
+			const network = await gateway.getNetwork(channelName);
+
+			// Get the contract from the network.
+			const contract = network.getContract(chaincodeName);
+
+			// Let's try a query type operation (function).
+			// This will be sent to just one peer and the results will be shown.
+			console.log('\n--> Evaluate Transaction: GetAllSensorData, function returns all sensor readings on the ledger');
+			let result = await contract.evaluateTransaction('GetAllSensorData');
+			console.log(`*** Result: ${prettyJSONString(result.toString())}`);
+
+            const data = JSON.parse(result.toString())
+            
+            // Disconnect from the gateway when the application is closing
+            await gateway.disconnect();
+
+			return data;
+        } catch (error) {
+            console.error(`******** FAILED to query data: ${error}`);
+            process.exit(1);
+        }
+	} catch (error) {
+		console.error(`******** FAILED to run the application: ${error}`);
+		process.exit(1);
+	}
+}
+
 app.get('/data', async (req, res) => {
-	  const data = await main();
+	  const data = await latestReading();
+	res.json(data);
+	});
+	
+app.get('/alldata', async (req, res) => {
+	  const data = await allData();
 	res.json(data);
 	});
 	
