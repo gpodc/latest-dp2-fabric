@@ -6,7 +6,7 @@ caliper:
 
 channels:
   # channelName of mychannel matches the name of the channel created by test network //c1 sa org1 fabric-test
-  - channelName: c1
+  - channelName: c3
     # the chaincodeIDs of all the fabric chaincodes in caliper-benchmarks
     contracts:
     - id: fabcar
@@ -14,18 +14,18 @@ channels:
     - id: marbles
     - id: simple
     - id: smallbank
-    - id: sensorDataContract1
+    - id: sensorDataContract3
 
 organizations:
-  - mspid: Org1MSP
+  - mspid: Org3MSP
     # Identities come from cryptogen created material for test-network
     identities:
       certificates:
       - name: 'User1'
         clientPrivateKey:
-          path: '../test-net/organizations/peerOrganizations/org1.iot-fabric.com/users/User1@org1.iot-fabric.com/msp/keystore/priv_sk'
+          path: '../test-net/organizations/peerOrganizations/org3.iot-fabric.com/users/User1@org3.iot-fabric.com/msp/keystore/priv_sk'
         clientSignedCert:
-          path: '../test-net/organizations/peerOrganizations/org1.iot-fabric.com/users/User1@org1.iot-fabric.com/msp/signcerts/User1@org1.iot-fabric.com-cert.pem'
+          path: '../test-net/organizations/peerOrganizations/org3.iot-fabric.com/users/User1@org3.iot-fabric.com/msp/signcerts/User1@org3.iot-fabric.com-cert.pem'
     connectionProfile:
-      path: '../test-net/organizations/peerOrganizations/org1.iot-fabric.com/connection-org1.yaml'
+      path: '../test-net/organizations/peerOrganizations/org3.iot-fabric.com/connection-org3.yaml'
       discover: true

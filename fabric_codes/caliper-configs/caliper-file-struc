@@ -1,6 +1,6 @@
 sensorDataContract
 
-benchmarks/samples/fabric/sensorDataContract/
+benchmarks/samples/fabric/sensorDataContract-org1/
 
 
 fabric-net-c1.yaml

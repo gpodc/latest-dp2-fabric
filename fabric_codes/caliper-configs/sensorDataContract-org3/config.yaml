@@ -10,7 +10,7 @@ test:
         opts:
           transactionLoad: 5
       workload:
-        module: "benchmarks/samples/fabric/sensorDataContract/create-sensor-data.js"
+        module: "benchmarks/samples/fabric/sensorDataContract-org3/create-sensor-data.js"
     - label: "Read Sensor Data"
       description: "Test reading sensor data entries"
       txNumber: 1000
@@ -19,6 +19,6 @@ test:
         opts:
           transactionLoad: 5
       workload:
-        module: "benchmarks/samples/fabric/sensorDataContract/read-sensor-data.js"
+        module: "benchmarks/samples/fabric/sensorDataContract-org3/read-sensor-data.js"
         arguments:
           assets: 500
