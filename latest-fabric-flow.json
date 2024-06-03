@@ -1,0 +1,495 @@
+[
+    {
+        "id": "39d1d1445025bc7e",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "f033cde82a14fae2",
+        "type": "function",
+        "z": "39d1d1445025bc7e",
+        "name": "function 1",
+        "func": "function IDiterator() {\n    // Retrieve the last used ID from the flow context or start with 0\n    var lastId = flow.get('lastId') || 3;;\n    // Increment the ID\n    lastId += 1;\n    // Update the flow context with the new last used ID\n    flow.set('lastId', lastId);\n    // Return the new ID prefixed with 'data_'\n    return 'data_' + lastId.toString();\n}\n// function meterReadingIterator() {\n//     // Retrieve the last used ID from the flow context or start with 0\n//     var lastRead = flow.get('lastRead') || 69;;\n//     // Increment the ID\n//     lastRead += 1;\n//     // Update the flow context with the new last used ID\n//     flow.set('lastRead', lastRead);\n//     // Return the new ID prefixed with 'data_'\n//     return lastRead.toString();\n// }\n\nvar inputData = msg.payload;\n\nmsg.payload = {\n    id: IDiterator(),  // Ensure unique IDs\n    sensorID: \"101\",\n    // kwhReading: \"69\",\n    kwhReading: inputData.Power.toString(),\n    ampReading: inputData.amps.toString(),\n    timestamp: new Date().toISOString()\n};\nreturn {payload: \n    [msg.payload.id, \n    msg.payload.sensorID, \n    msg.payload.kwhReading,\n    msg.payload.ampReading, \n    msg.payload.timestamp]};\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nflow.set('lastId', 1663);",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 220,
+        "wires": [
+            [
+                "d1084784483c6f9c"
+            ]
+        ]
+    },
+    {
+        "id": "d1084784483c6f9c",
+        "type": "fabric-cc-submit",
+        "z": "39d1d1445025bc7e",
+        "name": "submit data cc -c1",
+        "gatewaySelector": "902207e25ccfdf05",
+        "identitySelector": "f1e6a502204fb65d",
+        "channelSelector": "8360c86278009dc7",
+        "contractSelector": "9e496fc66c0dafec",
+        "transaction": "CreateSensorData",
+        "args": "",
+        "transientData": "",
+        "x": 530,
+        "y": 220,
+        "wires": [
+            [
+                "2d334c52c73061b6"
+            ]
+        ]
+    },
+    {
+        "id": "2d334c52c73061b6",
+        "type": "debug",
+        "z": "39d1d1445025bc7e",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 700,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "9fac1498895185ae",
+        "type": "function",
+        "z": "39d1d1445025bc7e",
+        "name": "function 2",
+        "func": "function IDiterator() {\n    // Retrieve the last used ID from the flow context or start with 0\n    var lastId = flow.get('lastId') || 3;;\n    // Increment the ID\n    lastId += 1;\n    // Update the flow context with the new last used ID\n    flow.set('lastId', lastId);\n    // Return the new ID prefixed with 'data_'\n    return 'data_' + lastId.toString();\n}\n\nvar inputData = msg.payload;\n\nmsg.payload = {\n    id: IDiterator(),  // Ensure unique IDs\n    sensorID: \"102\",\n    kwhReading: inputData.Power.toString(),\n    ampReading: inputData.amps.toString(),\n    timestamp: new Date().toISOString()\n};\nreturn {payload: \n    [msg.payload.id, \n    msg.payload.sensorID, \n    msg.payload.kwhReading,\n    msg.payload.ampReading, \n    msg.payload.timestamp]};\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\n// flow.set('lastId', 21);",
+        "finalize": "",
+        "libs": [],
+        "x": 340,
+        "y": 400,
+        "wires": [
+            [
+                "57938b9ac118a902"
+            ]
+        ]
+    },
+    {
+        "id": "57938b9ac118a902",
+        "type": "fabric-cc-submit",
+        "z": "39d1d1445025bc7e",
+        "name": "submit data cc -c2",
+        "gatewaySelector": "63372c781b6a8732",
+        "identitySelector": "14fd8338aaa0407b",
+        "channelSelector": "17f8d88876373ad5",
+        "contractSelector": "3ec3ab2f868d3b12",
+        "transaction": "CreateSensorData",
+        "args": "",
+        "transientData": "",
+        "x": 550,
+        "y": 400,
+        "wires": [
+            [
+                "cce3d36af06861f2"
+            ]
+        ]
+    },
+    {
+        "id": "cce3d36af06861f2",
+        "type": "debug",
+        "z": "39d1d1445025bc7e",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 720,
+        "y": 400,
+        "wires": []
+    },
+    {
+        "id": "0a8aa056af995c34",
+        "type": "inject",
+        "z": "39d1d1445025bc7e",
+        "name": "sensorData",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "sensorData",
+        "payload": "{\"Power\":0.22323,\"amps\":1.195}",
+        "payloadType": "json",
+        "x": 230,
+        "y": 680,
+        "wires": [
+            [
+                "4a7f16215b725e40"
+            ]
+        ]
+    },
+    {
+        "id": "4a7f16215b725e40",
+        "type": "function",
+        "z": "39d1d1445025bc7e",
+        "name": "function 3",
+        "func": "function IDiterator() {\n    // Retrieve the last used ID from the flow context or start with 0\n    var lastId = flow.get('lastId') || 3;;\n    // Increment the ID\n    lastId += 1;\n    // Update the flow context with the new last used ID\n    flow.set('lastId', lastId);\n    // Return the new ID prefixed with 'data_'\n    return 'data_' + lastId.toString();\n}\n\nvar inputData = msg.payload;\n\nmsg.payload = {\n    id: IDiterator(),  // Ensure unique IDs\n    sensorID: \"103\",\n    kwhReading: inputData.Power.toString(),\n    ampReading: inputData.amps.toString(),\n    timestamp: new Date().toISOString()\n};\nreturn {payload: \n    [msg.payload.id, \n    msg.payload.sensorID, \n    msg.payload.kwhReading,\n    msg.payload.ampReading, \n    msg.payload.timestamp]};\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\n// flow.set('lastId', 3);",
+        "finalize": "",
+        "libs": [],
+        "x": 320,
+        "y": 580,
+        "wires": [
+            [
+                "315d5147571fe6a1"
+            ]
+        ]
+    },
+    {
+        "id": "315d5147571fe6a1",
+        "type": "fabric-cc-submit",
+        "z": "39d1d1445025bc7e",
+        "name": "submit data cc -c3",
+        "gatewaySelector": "c2b75c39340cbb12",
+        "identitySelector": "dfb370f77c95c872",
+        "channelSelector": "959523bc29de430a",
+        "contractSelector": "fd57702bba61d259",
+        "transaction": "CreateSensorData",
+        "args": "",
+        "transientData": "",
+        "x": 530,
+        "y": 580,
+        "wires": [
+            [
+                "1fdc8ae5d6deecb2"
+            ]
+        ]
+    },
+    {
+        "id": "1fdc8ae5d6deecb2",
+        "type": "debug",
+        "z": "39d1d1445025bc7e",
+        "name": "debug 3",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 580,
+        "wires": []
+    },
+    {
+        "id": "c35609b0448fcee5",
+        "type": "inject",
+        "z": "39d1d1445025bc7e",
+        "name": "sensorData",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "sensorData",
+        "payload": "{\"Power\":0.22323,\"amps\":1.195}",
+        "payloadType": "json",
+        "x": 210,
+        "y": 480,
+        "wires": [
+            [
+                "9fac1498895185ae"
+            ]
+        ]
+    },
+    {
+        "id": "bfddcdad65486185",
+        "type": "inject",
+        "z": "39d1d1445025bc7e",
+        "name": "sensorData",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "sensorData",
+        "payload": "{\"Power\":0.22323,\"amps\":1.195}",
+        "payloadType": "json",
+        "x": 170,
+        "y": 320,
+        "wires": [
+            [
+                "f033cde82a14fae2"
+            ]
+        ]
+    },
+    {
+        "id": "d0dd7496e13d8e78",
+        "type": "mqtt in",
+        "z": "39d1d1445025bc7e",
+        "name": "",
+        "topic": "org1/appWatts",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "db87875510bca90d",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 180,
+        "y": 160,
+        "wires": [
+            [
+                "f033cde82a14fae2"
+            ]
+        ]
+    },
+    {
+        "id": "5ee1fb5b420b7dac",
+        "type": "mqtt in",
+        "z": "39d1d1445025bc7e",
+        "name": "",
+        "topic": "org2/appWatts",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "db87875510bca90d",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 120,
+        "y": 400,
+        "wires": [
+            [
+                "9fac1498895185ae"
+            ]
+        ]
+    },
+    {
+        "id": "5367a037c367a54d",
+        "type": "mqtt in",
+        "z": "39d1d1445025bc7e",
+        "name": "",
+        "topic": "mainPower/appWatts",
+        "qos": "1",
+        "datatype": "auto-detect",
+        "broker": "db87875510bca90d",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 140,
+        "y": 560,
+        "wires": [
+            [
+                "4a7f16215b725e40"
+            ]
+        ]
+    },
+    {
+        "id": "902207e25ccfdf05",
+        "type": "fabric-gateway",
+        "name": "peer0.org1",
+        "peerSelectorGw": "fd166524d61b9659"
+    },
+    {
+        "id": "f1e6a502204fb65d",
+        "type": "fabric-identity",
+        "name": "org1-c1",
+        "mspIdSelector": "09eb25318cd76c38",
+        "certType": "embeded",
+        "isFabricOpType": "true",
+        "fabricOpIdPath": "",
+        "certPath": "",
+        "privateKeyPath": "",
+        "microfabUrl": "http://client.127-0-0-1.nip.io:8080",
+        "microfabId": ""
+    },
+    {
+        "id": "8360c86278009dc7",
+        "type": "fabric-channel",
+        "name": "c1",
+        "channel": "c1"
+    },
+    {
+        "id": "9e496fc66c0dafec",
+        "type": "fabric-contract",
+        "name": "",
+        "contract": "sensorDataContract1"
+    },
+    {
+        "id": "63372c781b6a8732",
+        "type": "fabric-gateway",
+        "name": "peer0.org2",
+        "peerSelectorGw": "dca5b8faf518ce2a"
+    },
+    {
+        "id": "14fd8338aaa0407b",
+        "type": "fabric-identity",
+        "name": "org2-c2",
+        "mspIdSelector": "44fefe8663ce7174",
+        "certType": "embeded",
+        "isFabricOpType": "true",
+        "fabricOpIdPath": "",
+        "certPath": "",
+        "privateKeyPath": "",
+        "microfabUrl": "http://client.127-0-0-1.nip.io:8080",
+        "microfabId": ""
+    },
+    {
+        "id": "17f8d88876373ad5",
+        "type": "fabric-channel",
+        "name": "",
+        "channel": "c2"
+    },
+    {
+        "id": "3ec3ab2f868d3b12",
+        "type": "fabric-contract",
+        "name": "",
+        "contract": "sensorDataContract2"
+    },
+    {
+        "id": "c2b75c39340cbb12",
+        "type": "fabric-gateway",
+        "name": "peer0.org3",
+        "peerSelectorGw": "5e6d0a068af70aa6"
+    },
+    {
+        "id": "dfb370f77c95c872",
+        "type": "fabric-identity",
+        "name": "org3-c3",
+        "mspIdSelector": "93ddb44773a6c4a5",
+        "certType": "embeded",
+        "isFabricOpType": "true",
+        "fabricOpIdPath": "",
+        "certPath": "",
+        "privateKeyPath": "",
+        "microfabUrl": "http://client.127-0-0-1.nip.io:8080",
+        "microfabId": ""
+    },
+    {
+        "id": "959523bc29de430a",
+        "type": "fabric-channel",
+        "name": "",
+        "channel": "c3"
+    },
+    {
+        "id": "fd57702bba61d259",
+        "type": "fabric-contract",
+        "name": "",
+        "contract": "sensorDataContract3"
+    },
+    {
+        "id": "db87875510bca90d",
+        "type": "mqtt-broker",
+        "name": "PicoPower",
+        "broker": "127.0.0.1",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "3",
+        "keepalive": "30",
+        "cleansession": true,
+        "autoUnsubscribe": false,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "fd166524d61b9659",
+        "type": "fabric-peer",
+        "name": "",
+        "url": "peer0.org1.iot-fabric.com:7051",
+        "tls": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUNaRENDQWdtZ0F3SUJBZ0lRSlpsUVdZbzdI RTZNZjRtK2NrdHhxekFLQmdncWhrak9QUVFEQWpCOE1Rc3cKQ1FZRFZRUUdFd0pWVXpFVE1CRUdB MVVFQ0JNS1EyRnNhV1p2Y201cFlURVdNQlFHQTFVRUJ4TU5VMkZ1SUVaeQpZVzVqYVhOamJ6RWNN Qm9HQTFVRUNoTVRiM0puTVM1cGIzUXRabUZpY21sakxtTnZiVEVpTUNBR0ExVUVBeE1aCmRHeHpZ MkV1YjNKbk1TNXBiM1F0Wm1GaWNtbGpMbU52YlRBZUZ3MHlOREEyTURJeE1qVXlNREJhRncwek5E QTEKTXpFeE1qVXlNREJhTUh3eEN6QUpCZ05WQkFZVEFsVlRNUk13RVFZRFZRUUlFd3BEWVd4cFpt OXlibWxoTVJZdwpGQVlEVlFRSEV3MVRZVzRnUm5KaGJtTnBjMk52TVJ3d0dnWURWUVFLRXhOdmNt Y3hMbWx2ZEMxbVlXSnlhV011ClkyOXRNU0l3SUFZRFZRUURFeGwwYkhOallTNXZjbWN4TG1sdmRD MW1ZV0p5YVdNdVkyOXRNRmt3RXdZSEtvWkkKemowQ0FRWUlLb1pJemowREFRY0RRZ0FFMVg3czc2 dlgySW9yVWxWWFU0bHBNOHlGZGdZeHhPTU53QituUGgrZApWTkIwUzVwWGRha1lNRHR0SDRBU1NX a21ncTFLRzlGWVJpaVJhYzJHVTJnWlk2TnRNR3N3RGdZRFZSMFBBUUgvCkJBUURBZ0dtTUIwR0Ex VWRKUVFXTUJRR0NDc0dBUVVGQndNQ0JnZ3JCZ0VGQlFjREFUQVBCZ05WSFJNQkFmOEUKQlRBREFR SC9NQ2tHQTFVZERnUWlCQ0NHUElZQWtuODRUcnd3VFcrb1pkZTRyNFgvVERsL0FSK2dYSGk1UjVy WApqakFLQmdncWhrak9QUVFEQWdOSkFEQkdBaUVBc0tyYnAzMy8wUzErWHRRUldza1FUQi9RRnZH QVQ1Nnc4VHBTCkZoem8yOW9DSVFEbWV5am1oUmQwNytrSjF4cDZOUHdTUjg2NGlnTk1aSkRQanJa K0k0SWMydz09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K",
+        "grpcOptions": "{\n  \"grpc.ssl_target_name_override\": \"peer0.org1.iot-fabric.com\",\n  \"grpc.default_authority\": \"peer0.org1.iot-fabric.com\"\n}\n"
+    },
+    {
+        "id": "09eb25318cd76c38",
+        "type": "fabric-mspid",
+        "name": "mspid1",
+        "mspId": "Org1MSP"
+    },
+    {
+        "id": "dca5b8faf518ce2a",
+        "type": "fabric-peer",
+        "name": "",
+        "url": "peer0.org2.iot-fabric.com:9051",
+        "tls": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUNaRENDQWdxZ0F3SUJBZ0lSQU5nZmZ5TVJY VFRwYVA1VlE2VktwcW93Q2dZSUtvWkl6ajBFQXdJd2ZERUwKTUFrR0ExVUVCaE1DVlZNeEV6QVJC Z05WQkFnVENrTmhiR2xtYjNKdWFXRXhGakFVQmdOVkJBY1REVk5oYmlCRwpjbUZ1WTJselkyOHhI REFhQmdOVkJBb1RFMjl5WnpJdWFXOTBMV1poWW5KcFl5NWpiMjB4SWpBZ0JnTlZCQU1UCkdYUnNj Mk5oTG05eVp6SXVhVzkwTFdaaFluSnBZeTVqYjIwd0hoY05NalF3TmpBeU1USTFNakF3V2hjTk16 UXcKTlRNeE1USTFNakF3V2pCOE1Rc3dDUVlEVlFRR0V3SlZVekVUTUJFR0ExVUVDQk1LUTJGc2FX WnZjbTVwWVRFVwpNQlFHQTFVRUJ4TU5VMkZ1SUVaeVlXNWphWE5qYnpFY01Cb0dBMVVFQ2hNVGIz Sm5NaTVwYjNRdFptRmljbWxqCkxtTnZiVEVpTUNBR0ExVUVBeE1aZEd4elkyRXViM0puTWk1cGIz UXRabUZpY21sakxtTnZiVEJaTUJNR0J5cUcKU000OUFnRUdDQ3FHU000OUF3RUhBMElBQkI5Z2Mr d2VVb2ZhL0VPVkk3dFJGTDBQSzZrckJTY1VGWUpSWER5RApvOG9QTmtXS2FMY21RMGZpVUc3eXBR cHh1bFNVOHlJR1Z0Rmk4WUJueFU3K2ZmcWpiVEJyTUE0R0ExVWREd0VCCi93UUVBd0lCcGpBZEJn TlZIU1VFRmpBVUJnZ3JCZ0VGQlFjREFnWUlLd1lCQlFVSEF3RXdEd1lEVlIwVEFRSC8KQkFVd0F3 RUIvekFwQmdOVkhRNEVJZ1FnVHZyYWpzWEpxb3V3YUJ2UEV6b2lVb3hmTzZnaFdVWUo2Z1Z2L3Vk OApZMVF3Q2dZSUtvWkl6ajBFQXdJRFNBQXdSUUlnRDNmdTMrYjdjV29UVHFMYXdJWVRLN3YzZDlv QnBneUdXWHowCmRKMlM3V1lDSVFEWGVtMTdkSGdhNTZ0N1Q1RGRjS0habE9NUmtFczFPQUNMaUVY bGlvSGhsUT09Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K",
+        "grpcOptions": "{\n  \"grpc.ssl_target_name_override\": \"peer0.org2.iot-fabric.com\",\n  \"grpc.default_authority\": \"peer0.org2.iot-fabric.com\"\n}\n"
+    },
+    {
+        "id": "44fefe8663ce7174",
+        "type": "fabric-mspid",
+        "name": "mspid2",
+        "mspId": "Org2MSP"
+    },
+    {
+        "id": "5e6d0a068af70aa6",
+        "type": "fabric-peer",
+        "name": "",
+        "url": "peer0.org3.iot-fabric.com:11051",
+        "tls": "LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUNZekNDQWdxZ0F3SUJBZ0lSQUpjczJ1dy95 YlR5YU9oOWhUdVBmcFV3Q2dZSUtvWkl6ajBFQXdJd2ZERUwKTUFrR0ExVUVCaE1DVlZNeEV6QVJC Z05WQkFnVENrTmhiR2xtYjNKdWFXRXhGakFVQmdOVkJBY1REVk5oYmlCRwpjbUZ1WTJselkyOHhI REFhQmdOVkJBb1RFMjl5WnpNdWFXOTBMV1poWW5KcFl5NWpiMjB4SWpBZ0JnTlZCQU1UCkdYUnNj Mk5oTG05eVp6TXVhVzkwTFdaaFluSnBZeTVqYjIwd0hoY05NalF3TmpBeU1USTFNakF3V2hjTk16 UXcKTlRNeE1USTFNakF3V2pCOE1Rc3dDUVlEVlFRR0V3SlZVekVUTUJFR0ExVUVDQk1LUTJGc2FX WnZjbTVwWVRFVwpNQlFHQTFVRUJ4TU5VMkZ1SUVaeVlXNWphWE5qYnpFY01Cb0dBMVVFQ2hNVGIz Sm5NeTVwYjNRdFptRmljbWxqCkxtTnZiVEVpTUNBR0ExVUVBeE1aZEd4elkyRXViM0puTXk1cGIz UXRabUZpY21sakxtTnZiVEJaTUJNR0J5cUcKU000OUFnRUdDQ3FHU000OUF3RUhBMElBQkU3b1Z4 cklhN0s2OVRRR3BRSEY3c1AxK2lHY2s5Yk1UemhvTnNnRQpHd21CeFNqWWRtTzhyS2RBZy9mK2cy Wm9Tc1lTV1N5bUlXQTdkM3BPOW5rSHdlcWpiVEJyTUE0R0ExVWREd0VCCi93UUVBd0lCcGpBZEJn TlZIU1VFRmpBVUJnZ3JCZ0VGQlFjREFnWUlLd1lCQlFVSEF3RXdEd1lEVlIwVEFRSC8KQkFVd0F3 RUIvekFwQmdOVkhRNEVJZ1FnalluQ1EzR2gvTCs3REhiTEppNSs4aTdDY290RVdJTmRCQ3cwcGc2 QwpDNXd3Q2dZSUtvWkl6ajBFQXdJRFJ3QXdSQUlnR3hCYmRGMDFtZDFWWlNZNkdQUGl4OVpQMWh6 eGZpd2F6V1dNCnRJR2g0SUlDSURjY1hSUG9YUWJ5WnVFMUZKYWIza0EzMEdKei9LVklUME50bmdw YXhZaHAKLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=",
+        "grpcOptions": "{\n  \"grpc.ssl_target_name_override\": \"peer0.org3.iot-fabric.com\",\n  \"grpc.default_authority\": \"peer0.org3.iot-fabric.com\"\n}\n"
+    },
+    {
+        "id": "93ddb44773a6c4a5",
+        "type": "fabric-mspid",
+        "name": "mspid3",
+        "mspId": "Org3MSP"
+    }
+]
