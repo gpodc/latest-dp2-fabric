@@ -12,11 +12,11 @@
         "type": "function",
         "z": "39d1d1445025bc7e",
         "name": "function 1",
-        "func": "function IDiterator() {\n    // Retrieve the last used ID from the flow context or start with 0\n    var lastId = flow.get('lastId') || 3;;\n    // Increment the ID\n    lastId += 1;\n    // Update the flow context with the new last used ID\n    flow.set('lastId', lastId);\n    // Return the new ID prefixed with 'data_'\n    return 'data_' + lastId.toString();\n}\n// function meterReadingIterator() {\n//     // Retrieve the last used ID from the flow context or start with 0\n//     var lastRead = flow.get('lastRead') || 69;;\n//     // Increment the ID\n//     lastRead += 1;\n//     // Update the flow context with the new last used ID\n//     flow.set('lastRead', lastRead);\n//     // Return the new ID prefixed with 'data_'\n//     return lastRead.toString();\n// }\n\nvar inputData = msg.payload;\n\nmsg.payload = {\n    id: IDiterator(),  // Ensure unique IDs\n    sensorID: \"101\",\n    // kwhReading: \"69\",\n    kwhReading: inputData.Power.toString(),\n    ampReading: inputData.amps.toString(),\n    timestamp: new Date().toISOString()\n};\nreturn {payload: \n    [msg.payload.id, \n    msg.payload.sensorID, \n    msg.payload.kwhReading,\n    msg.payload.ampReading, \n    msg.payload.timestamp]};\n",
+        "func": "function IDiterator() {\n    // Retrieve the last used ID from the flow context or start with 0\n    var lastId = flow.get('lastId') || 3;;\n    // Increment the ID\n    lastId += 1;\n    // Update the flow context with the new last used ID\n    flow.set('lastId', lastId);\n    // Return the new ID prefixed with 'data_'\n    return 'data_' + lastId.toString();\n}\n// function meterReadingIterator() {\n//     // Retrieve the last used ID from the flow context or start with 0\n//     var lastRead = flow.get('lastRead') || 69;;\n//     // Increment the ID\n//     lastRead += 1;\n//     // Update the flow context with the new last used ID\n//     flow.set('lastRead', lastRead);\n//     // Return the new ID prefixed with 'data_'\n//     return lastRead.toString();\n// }\n\nvar inputData = msg.payload;\nconst moment = global.get('moment');\nlet timestamp = new Date().toISOString();\nlet convertedTimestamp = moment.tz(timestamp, 'UTC').tz('Asia/Manila').format();\n\nmsg.payload = {\n    id: IDiterator(),  // Ensure unique IDs\n    sensorID: \"101\",\n    // kwhReading: \"69\",\n    kwhReading: inputData.Power.toString(),\n    ampReading: inputData.amps.toString(),\n    timestamp: convertedTimestamp\n};\nreturn {payload: \n    [msg.payload.id, \n    msg.payload.sensorID, \n    msg.payload.kwhReading,\n    msg.payload.ampReading, \n    msg.payload.timestamp]};\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
-        "initialize": "// Code added here will be run once\n// whenever the node is started.\nflow.set('lastId', 1663);",
+        "initialize": "// Code added here will be run once\n// whenever the node is started.\nflow.set('lastId', 8704);",
         "finalize": "",
         "libs": [],
         "x": 320,
@@ -69,7 +69,7 @@
         "type": "function",
         "z": "39d1d1445025bc7e",
         "name": "function 2",
-        "func": "function IDiterator() {\n    // Retrieve the last used ID from the flow context or start with 0\n    var lastId = flow.get('lastId') || 3;;\n    // Increment the ID\n    lastId += 1;\n    // Update the flow context with the new last used ID\n    flow.set('lastId', lastId);\n    // Return the new ID prefixed with 'data_'\n    return 'data_' + lastId.toString();\n}\n\nvar inputData = msg.payload;\n\nmsg.payload = {\n    id: IDiterator(),  // Ensure unique IDs\n    sensorID: \"102\",\n    kwhReading: inputData.Power.toString(),\n    ampReading: inputData.amps.toString(),\n    timestamp: new Date().toISOString()\n};\nreturn {payload: \n    [msg.payload.id, \n    msg.payload.sensorID, \n    msg.payload.kwhReading,\n    msg.payload.ampReading, \n    msg.payload.timestamp]};\n",
+        "func": "function IDiterator() {\n    // Retrieve the last used ID from the flow context or start with 0\n    var lastId = flow.get('lastId') || 3;;\n    // Increment the ID\n    lastId += 1;\n    // Update the flow context with the new last used ID\n    flow.set('lastId', lastId);\n    // Return the new ID prefixed with 'data_'\n    return 'data_' + lastId.toString();\n}\n\nvar inputData = msg.payload;\nconst moment = global.get('moment');\nlet timestamp = new Date().toISOString();\nlet convertedTimestamp = moment.tz(timestamp, 'UTC').tz('Asia/Manila').format();\n\nmsg.payload = {\n    id: IDiterator(),  // Ensure unique IDs\n    sensorID: \"102\",\n    kwhReading: inputData.Power.toString(),\n    ampReading: inputData.amps.toString(),\n    timestamp: convertedTimestamp\n};\nreturn {payload: \n    [msg.payload.id, \n    msg.payload.sensorID, \n    msg.payload.kwhReading,\n    msg.payload.ampReading, \n    msg.payload.timestamp]};\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -154,7 +154,7 @@
         "type": "function",
         "z": "39d1d1445025bc7e",
         "name": "function 3",
-        "func": "function IDiterator() {\n    // Retrieve the last used ID from the flow context or start with 0\n    var lastId = flow.get('lastId') || 3;;\n    // Increment the ID\n    lastId += 1;\n    // Update the flow context with the new last used ID\n    flow.set('lastId', lastId);\n    // Return the new ID prefixed with 'data_'\n    return 'data_' + lastId.toString();\n}\n\nvar inputData = msg.payload;\n\nmsg.payload = {\n    id: IDiterator(),  // Ensure unique IDs\n    sensorID: \"103\",\n    kwhReading: inputData.Power.toString(),\n    ampReading: inputData.amps.toString(),\n    timestamp: new Date().toISOString()\n};\nreturn {payload: \n    [msg.payload.id, \n    msg.payload.sensorID, \n    msg.payload.kwhReading,\n    msg.payload.ampReading, \n    msg.payload.timestamp]};\n",
+        "func": "function IDiterator() {\n    // Retrieve the last used ID from the flow context or start with 0\n    var lastId = flow.get('lastId') || 3;;\n    // Increment the ID\n    lastId += 1;\n    // Update the flow context with the new last used ID\n    flow.set('lastId', lastId);\n    // Return the new ID prefixed with 'data_'\n    return 'data_' + lastId.toString();\n}\n\nvar inputData = msg.payload;\nconst moment = global.get('moment');\nlet timestamp = new Date().toISOString();\nlet convertedTimestamp = moment.tz(timestamp, 'UTC').tz('Asia/Manila').format();\n\nmsg.payload = {\n    id: IDiterator(),  // Ensure unique IDs\n    sensorID: \"103\",\n    kwhReading: inputData.Power.toString(),\n    ampReading: inputData.amps.toString(),\n    timestamp: convertedTimestamp\n};\nreturn {payload: \n    [msg.payload.id, \n    msg.payload.sensorID, \n    msg.payload.kwhReading,\n    msg.payload.ampReading, \n    msg.payload.timestamp]};\n",
         "outputs": 1,
         "timeout": 0,
         "noerr": 0,
@@ -493,3 +493,4 @@
         "mspId": "Org3MSP"
     }
 ]
+
