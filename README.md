@@ -19,7 +19,10 @@ set env variables to Org
 
 # config
 *scripts are for creating only one organization per channel
+
 *double check paths
+
+*readme may not be updated hehe
 
 # Folder Structure
     explorer
