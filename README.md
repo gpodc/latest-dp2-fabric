@@ -24,7 +24,7 @@ set env variables to Org
 
 *messy codes
 
-*readme may not be updated hehe
+*readme and codes may not be updated hehe
 
 # Folder Structure
     explorer
