@@ -22,6 +22,8 @@ set env variables to Org
 
 *double check paths
 
+*messy codes
+
 *readme may not be updated hehe
 
 # Folder Structure
