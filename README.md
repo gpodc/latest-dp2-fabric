@@ -18,7 +18,8 @@ Before invoking chaincode
 set env variables to Org
 
 # config
-*scripts are for creating one peer per organization.
+*scripts are for creating only one organization per channel
+*double check paths
 
 # Folder Structure
     explorer
