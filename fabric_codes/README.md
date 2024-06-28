@@ -1,4 +1,4 @@
-# fabric_codes
+# fabric_codes (OUTDATED)
 
 #Telusko Hindi: Building Fabric network from Scratch part 1
 #https://www.youtube.com/watch?v=tfaj_JHbTwM
