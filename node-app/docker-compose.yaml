@@ -18,7 +18,7 @@ services:
     ports:
       - "3001:3001"
     volumes:
-      - ../test-net/organizations/peerOrganizations/org1.example.com/connection-app-org1.json:/tmp/connection-app-org1.json
+      - ../test-net/organizations/peerOrganizations/org1.iot-fabric.com/connection-app-org1.json:/tmp/connection-app-org1.json
       - ../test-net/organizations:/app/organizations
     networks:
       - test
@@ -31,7 +31,7 @@ services:
     ports:
       - "3002:3002"
     volumes:
-      - ../test-net/organizations/peerOrganizations/org2.example.com/connection-app-org2.json:/tmp/connection-app-org2.json
+      - ../test-net/organizations/peerOrganizations/org2.iot-fabric.com/connection-app-org2.json:/tmp/connection-app-org2.json
       - ../test-net/organizations:/app/organizations
     networks:
       - test
@@ -44,7 +44,7 @@ services:
     ports:
       - "3003:3003"
     volumes:
-      - ../test-net/organizations/peerOrganizations/org3.example.com/connection-app-org3.json:/tmp/connection-app-org3.json
+      - ../test-net/organizations/peerOrganizations/org3.iot-fabric.com/connection-app-org3.json:/tmp/connection-app-org3.json
       - ../test-net/organizations:/app/organizations
     networks:
       - test

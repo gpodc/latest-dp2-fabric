@@ -2,7 +2,7 @@
 OrdererOrgs:
  
   - Name: Orderer
-    Domain: example.com
+    Domain: iot-fabric.com
     EnableNodeOUs: true
 
     Specs:
@@ -15,7 +15,7 @@ OrdererOrgs:
 PeerOrgs:
 #Org1 crypto
   - Name: Org1
-    Domain: org1.example.com
+    Domain: org1.iot-fabric.com
     EnableNodeOUs: true
 
     Template:
@@ -28,7 +28,7 @@ PeerOrgs:
 
 #Org2 crypto
   - Name: Org2
-    Domain: org2.example.com
+    Domain: org2.iot-fabric.com
     EnableNodeOUs: true
 
     Template:
@@ -41,7 +41,7 @@ PeerOrgs:
 
 #Org3 crypto
   - Name: Org3
-    Domain: org3.example.com
+    Domain: org3.iot-fabric.com
     EnableNodeOUs: true
 
     Template:

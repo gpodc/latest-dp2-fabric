@@ -11,7 +11,7 @@ const path = require('path');
 
 exports.buildCCPOrg3 = () => {
 	// load the common connection configuration file
-	// const ccpPath = path.resolve(__dirname, '..', 'fabric_codes', 'test-net', 'organizations', 'peerOrganizations', 'org1.example.com', 'connection-org1.json');
+	// const ccpPath = path.resolve(__dirname, '..', 'fabric_codes', 'test-net', 'organizations', 'peerOrganizations', 'org1.iot-fabric.com', 'connection-org1.json');
 	const ccpPath = path.resolve(__dirname,'/tmp', 'connection-app-org3.json');
 	const fileExists = fs.existsSync(ccpPath);
 	if (!fileExists) {
@@ -57,8 +57,8 @@ exports.buildWallet = async (Wallets, walletPath, userName) => {
 		}
 	
 		// Path to the user's certificate and private key
-		const certPath = path.resolve(__dirname, './organizations/peerOrganizations/org3.example.com/users/User1@org3.example.com/msp/signcerts/User1@org3.example.com-cert.pem');
-		const keyPath = path.resolve(__dirname, './organizations/peerOrganizations/org3.example.com/users/User1@org3.example.com/msp/keystore/priv_sk');
+		const certPath = path.resolve(__dirname, './organizations/peerOrganizations/org3.iot-fabric.com/users/User1@org3.iot-fabric.com/msp/signcerts/User1@org3.iot-fabric.com-cert.pem');
+		const keyPath = path.resolve(__dirname, './organizations/peerOrganizations/org3.iot-fabric.com/users/User1@org3.iot-fabric.com/msp/keystore/priv_sk');
 	
 		// Read the certificate and private key files
 		const cert = fs.readFileSync(certPath).toString();

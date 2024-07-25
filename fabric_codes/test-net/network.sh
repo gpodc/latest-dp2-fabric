@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #export path to fabric binaries
-export PATH=/home/goerge/project2/fabric_codes/bin:$PATH
+export PATH=/home/cpeadmin/dp2/bin:$PATH
 export FABRIC_CFG_PATH=${PWD}/configtx
 export VERBOSE=false
 

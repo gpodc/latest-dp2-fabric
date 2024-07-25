@@ -31,58 +31,58 @@ function yaml_ccp {
 ORG=1
 P0PORT=7051
 CAPORT=7054
-PEERPEM=organizations/peerOrganizations/org1.example.com/tlsca/tlsca.org1.example.com-cert.pem
-CAPEM=organizations/peerOrganizations/org1.example.com/ca/ca.org1.example.com-cert.pem
+PEERPEM=organizations/peerOrganizations/org1.iot-fabric.com/tlsca/tlsca.org1.iot-fabric.com-cert.pem
+CAPEM=organizations/peerOrganizations/org1.iot-fabric.com/ca/ca.org1.iot-fabric.com-cert.pem
 URL=localhost
 
-echo "$(json_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM $URL)" > organizations/peerOrganizations/org1.example.com/connection-org1.json
-echo "$(yaml_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM)" > organizations/peerOrganizations/org1.example.com/connection-org1.yaml
+echo "$(json_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM $URL)" > organizations/peerOrganizations/org1.iot-fabric.com/connection-org1.json
+echo "$(yaml_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM)" > organizations/peerOrganizations/org1.iot-fabric.com/connection-org1.yaml
 
 ORG=2
 P0PORT=9051
 CAPORT=8054
-PEERPEM=organizations/peerOrganizations/org2.example.com/tlsca/tlsca.org2.example.com-cert.pem
-CAPEM=organizations/peerOrganizations/org2.example.com/ca/ca.org2.example.com-cert.pem
+PEERPEM=organizations/peerOrganizations/org2.iot-fabric.com/tlsca/tlsca.org2.iot-fabric.com-cert.pem
+CAPEM=organizations/peerOrganizations/org2.iot-fabric.com/ca/ca.org2.iot-fabric.com-cert.pem
 URL=localhost
 
-echo "$(json_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM $URL)" > organizations/peerOrganizations/org2.example.com/connection-org2.json
-echo "$(yaml_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM)" > organizations/peerOrganizations/org2.example.com/connection-org2.yaml
+echo "$(json_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM $URL)" > organizations/peerOrganizations/org2.iot-fabric.com/connection-org2.json
+echo "$(yaml_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM)" > organizations/peerOrganizations/org2.iot-fabric.com/connection-org2.yaml
 
 ORG=3
 P0PORT=11051
 CAPORT=11054
-PEERPEM=organizations/peerOrganizations/org3.example.com/tlsca/tlsca.org3.example.com-cert.pem
-CAPEM=organizations/peerOrganizations/org3.example.com/ca/ca.org3.example.com-cert.pem
+PEERPEM=organizations/peerOrganizations/org3.iot-fabric.com/tlsca/tlsca.org3.iot-fabric.com-cert.pem
+CAPEM=organizations/peerOrganizations/org3.iot-fabric.com/ca/ca.org3.iot-fabric.com-cert.pem
 URL=localhost
 
-echo "$(json_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM $URL)" > organizations/peerOrganizations/org3.example.com/connection-org3.json
-echo "$(yaml_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM)" > organizations/peerOrganizations/org3.example.com/connection-org3.yaml
+echo "$(json_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM $URL)" > organizations/peerOrganizations/org3.iot-fabric.com/connection-org3.json
+echo "$(yaml_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM)" > organizations/peerOrganizations/org3.iot-fabric.com/connection-org3.yaml
 
 
 #---------------------CCP for node-app---------------------------
 ORG=1
 P0PORT=7051
 CAPORT=7054
-PEERPEM=organizations/peerOrganizations/org1.example.com/tlsca/tlsca.org1.example.com-cert.pem
-CAPEM=organizations/peerOrganizations/org1.example.com/ca/ca.org1.example.com-cert.pem
-URL=peer0.org1.example.com
+PEERPEM=organizations/peerOrganizations/org1.iot-fabric.com/tlsca/tlsca.org1.iot-fabric.com-cert.pem
+CAPEM=organizations/peerOrganizations/org1.iot-fabric.com/ca/ca.org1.iot-fabric.com-cert.pem
+URL=peer0.org1.iot-fabric.com
 
-echo "$(json_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM $URL)" > organizations/peerOrganizations/org1.example.com/connection-app-org1.json
+echo "$(json_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM $URL)" > organizations/peerOrganizations/org1.iot-fabric.com/connection-app-org1.json
 
 ORG=2
 P0PORT=9051
 CAPORT=8054
-PEERPEM=organizations/peerOrganizations/org2.example.com/tlsca/tlsca.org2.example.com-cert.pem
-CAPEM=organizations/peerOrganizations/org2.example.com/ca/ca.org2.example.com-cert.pem
-URL=peer0.org2.example.com
+PEERPEM=organizations/peerOrganizations/org2.iot-fabric.com/tlsca/tlsca.org2.iot-fabric.com-cert.pem
+CAPEM=organizations/peerOrganizations/org2.iot-fabric.com/ca/ca.org2.iot-fabric.com-cert.pem
+URL=peer0.org2.iot-fabric.com
 
-echo "$(json_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM $URL)" > organizations/peerOrganizations/org2.example.com/connection-app-org2.json
+echo "$(json_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM $URL)" > organizations/peerOrganizations/org2.iot-fabric.com/connection-app-org2.json
 
 ORG=3
 P0PORT=11051
 CAPORT=11054
-PEERPEM=organizations/peerOrganizations/org3.example.com/tlsca/tlsca.org3.example.com-cert.pem
-CAPEM=organizations/peerOrganizations/org3.example.com/ca/ca.org3.example.com-cert.pem
-URL=peer0.org3.example.com
+PEERPEM=organizations/peerOrganizations/org3.iot-fabric.com/tlsca/tlsca.org3.iot-fabric.com-cert.pem
+CAPEM=organizations/peerOrganizations/org3.iot-fabric.com/ca/ca.org3.iot-fabric.com-cert.pem
+URL=peer0.org3.iot-fabric.com
 
-echo "$(json_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM $URL)" > organizations/peerOrganizations/org3.example.com/connection-app-org3.json
+echo "$(json_ccp $ORG $P0PORT $CAPORT $PEERPEM $CAPEM $URL)" > organizations/peerOrganizations/org3.iot-fabric.com/connection-app-org3.json

@@ -32,7 +32,7 @@ async function latestReading() {
 
 		// build an instance of the fabric ca services client based on
 		// the information in the network configuration
-		// const caClient = buildCAClient(FabricCAServices, ccp, 'ca.org1.example.com');
+		// const caClient = buildCAClient(FabricCAServices, ccp, 'ca.org1.iot-fabric.com');
 
 		// setup the wallet to hold the credentials of the application user
 		const wallet = await buildWallet(Wallets, walletPath, org3UserId);
@@ -88,7 +88,7 @@ async function allData() {
 
 		// build an instance of the fabric ca services client based on
 		// the information in the network configuration
-		// const caClient = buildCAClient(FabricCAServices, ccp, 'ca.org1.example.com');
+		// const caClient = buildCAClient(FabricCAServices, ccp, 'ca.org1.iot-fabric.com');
 
 		// setup the wallet to hold the credentials of the application user
 		const wallet = await buildWallet(Wallets, walletPath, org3UserId);

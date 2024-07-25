@@ -12,7 +12,7 @@ if [ ! -d "channel-artifacts" ]; then
 fi
 
 createGenesisBlock(){  
-    # configtxgen -profile ChannelUsingRaft -outputBlock ./channel-artifacts/${CHANNEL_NAME}_genesis.pb -channelID $CHANNEL_NAME -asOrg Org1MSP **-tlsca ../organizations/peerOrganizations/msp/tlscacerts/tlsca.org1.example.com-cert.pem
+    # configtxgen -profile ChannelUsingRaft -outputBlock ./channel-artifacts/${CHANNEL_NAME}_genesis.pb -channelID $CHANNEL_NAME -asOrg Org1MSP **-tlsca ../organizations/peerOrganizations/msp/tlscacerts/tlsca.org1.iot-fabric.com-cert.pem
     configtxgen -profile Org${AS_ORG}Channel -outputBlock ./channel-artifacts/${CHANNEL_NAME}_genesis.block -channelID $CHANNEL_NAME -configPath $FABRIC_CFG_PATH
 
 }
