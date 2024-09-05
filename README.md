@@ -26,9 +26,6 @@ set env variables to Org
 
 *messy codes
 
-*readme and codes may not be updated hehe
-
-*these codes are fr thesis
 
 # Folder Structure
     explorer
