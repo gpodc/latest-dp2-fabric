@@ -1,5 +1,7 @@
 # fabric codes
 
+*Many files in this repo are sourced from fabric-samples and have been modified for our use case.
+
 Before running scripts
 
 Change path to bin in network.sh
